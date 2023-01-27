@@ -52,4 +52,8 @@ Found. Redirecting to https://universalmusic.com
    I've used (IE: Sequelize or Slonik).
 2. Error reporting is generic and could be updated to give specific errors for data validation, DB insert, etc.
 3. There is no authentication/authorization so anyone can create links or edit them.
-4. This intentionally does not have a separate production configuration for the application or database for simplicity's sake.
+4. This intentionally does not have a separate production configuration for the application or database for simplicity's
+   sake.
+5. Model/schema logic is currently included in the route handlers. However, if the feature set got any bigger, I
+   would refactor model logic into their own modules.
+6. Tests do _not_ mock the DB so that real-world performance can be measured via the test suite.

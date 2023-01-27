@@ -20,7 +20,7 @@ const shrink = async (req: Express.Request, res: Express.Response) => {
     // create a new link
     const link = await db.link.create({ data: shrinkParams });
 
-    res.json(link);
+    res.status(201).json(link);
   } catch (e) {
     res.status(400).send({ error: "There was a problem shrinking that URL! Please try again." });
   }
