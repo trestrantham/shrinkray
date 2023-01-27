@@ -5,17 +5,13 @@ import { db } from "../src/db";
 import { generateUniqueSlug } from "../src/utils";
 
 describe("GET /shrink", () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     const urls = ["https://sona.stream", "https://sonymusic.com", "https://universalmusic.com", "https://wmg.stream"];
 
     for (const url of urls) {
       const slug = await generateUniqueSlug();
       await db.link.create({ data: { url, slug } });
     }
-  });
-
-  afterEach(async () => {
-    await db.link.deleteMany({});
   });
 
   test("should return 200 & valid response", () => {

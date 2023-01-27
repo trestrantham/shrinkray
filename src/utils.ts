@@ -1,7 +1,7 @@
 import { db } from "./db";
 
 // cf: https://www.freecodecamp.org/news/check-if-a-javascript-string-is-a-url/
-const URL_REGEX: RegExp = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+const URL_REGEX = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
 
 const generateUniqueSlug = async (): Promise<string> => {
   let slug = generateSlug();

@@ -4,15 +4,9 @@ import { app } from "../src/app";
 import { db } from "../src/db";
 
 describe("UPDATE /update", () => {
-  beforeEach(async () => {
+  test("should return 201 & valid response if link is created successfully", async () => {
     await db.link.create({ data: { url: "https://sona.stream", slug: "sona" } });
-  });
 
-  afterEach(async () => {
-    await db.link.deleteMany({});
-  });
-
-  test("should return 201 & valid response if link is created successfully", () => {
     return request(app)
       .put("/sona")
       .send({ url: "https://soda.stream" })
@@ -24,14 +18,14 @@ describe("UPDATE /update", () => {
       });
   });
 
-  // test("should return 400 if invalid params are passed", () => {
-  //   return request(app)
-  //     .post("/shrink")
-  //     .send({ not_a_url: "https://sona.stream" })
-  //     .expect("Content-Type", /json/)
-  //     .expect(400)
-  //     .then(response => {
-  //       expect(response.body.error.length).toBeGreaterThan(0);
-  //     });
-  // });
+  test("should return 400 if invalid params are passed", () => {
+    return request(app)
+      .post("/shrink")
+      .send({ not_a_url: "https://sona.stream" })
+      .expect("Content-Type", /json/)
+      .expect(400)
+      .then(response => {
+        expect(response.body.error.length).toBeGreaterThan(0);
+      });
+  });
 });

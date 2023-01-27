@@ -8,10 +8,6 @@ describe("GET /:slug", () => {
     await db.link.create({ data: { url: "https://sona.stream", slug: "sona" } });
   });
 
-  afterEach(async () => {
-    await db.link.deleteMany({});
-  });
-
   test("should return 302 & valid redirct", () => {
     return request(app)
       .get("/sona")

@@ -9,5 +9,6 @@
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,
+    "types": ["@types/jest", "@quramy/jest-prisma"],
   }
 }

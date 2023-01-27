@@ -1,21 +1,8 @@
 import request from "supertest";
 
 import { app } from "../src/app";
-import { db } from "../src/db";
-
-// this is a global DB clean!
-beforeAll(async () => {
-  await db.link.deleteMany({});
-});
-afterAll(async () => {
-  await db.link.deleteMany({});
-});
 
 describe("POST /shrink", () => {
-  afterEach(async () => {
-    await db.link.deleteMany({});
-  });
-
   test("should return 201 & valid response if link is created successfully", () => {
     return request(app)
       .post("/shrink")

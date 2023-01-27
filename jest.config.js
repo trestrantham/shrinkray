@@ -1,5 +1,7 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
+  modulePathIgnorePatterns: ["dist"],
   preset: "ts-jest",
-  testEnvironment: "node",
+  setupFilesAfterEnv: ["./test/setup-prisma.ts"],
+  testEnvironment: "@quramy/jest-prisma/environment",
 };
