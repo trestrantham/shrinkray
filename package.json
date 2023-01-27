@@ -8,6 +8,7 @@
     "setup": "yarn install && prisma migrate dev",
     "start": "node dist/index.js",
     "test": "jest",
+    "test:load": "artillery quick --count 20 --num 10 http://localhost:3000/<slug>",
     "coverage": "jest --coverage"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
+    "artillery": "^2.0.0-29",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",

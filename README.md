@@ -46,6 +46,16 @@ $ curl 'http://localhost:3000/6lbi00hu'
 Found. Redirecting to https://universalmusic.com
 ```
 
+### Load Testing
+
+Shrink Ray uses Artillery to perform load testing. To run the load tests:
+
+1. First create a new link via the cURL command above
+2. Copy the created slug from the new link
+3. Update the `test:load` script in `package.json` to paste in the slug
+4. Start the server `yarn dev`
+5. Run load tests `yarn test:load`
+
 ## Caveats
 
 1. This was my first time using Prisma so apologies for any missing idioms, but I really enjoyed it versus previous ORMs
