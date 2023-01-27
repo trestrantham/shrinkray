@@ -22,6 +22,30 @@ mode. This will start the Shrink Ray web server.
 
 The full coverage test suite can be run with `yarn test`.
 
+Individual functionality can be tested with `cURL`:
+
+```bash
+# create a new link
+$ curl -X POST 'http://localhost:3000/shrink' -H 'Content-Type: application/json' -d '{"url":"https://sonymusic.com"}'
+{"id":1,"slug":"6lbi00hu","url":"https://sonymusic.com","view_count":0}
+
+# get all link stats
+$ curl 'http://localhost:3000/stats'
+[{"id":1,"slug":"6lbi00hu","url":"https://sonymusic.com","view_count":0},{"id":2,"slug":"ajrmv12i","url":"https://wmg.com","view_count":0}]
+
+# paginate link stats
+$ curl 'http://localhost:3000/stats?limit=1&offset=1'
+[{"id":2,"slug":"ajrmv12i","url":"https://wmg.com","view_count":0}]
+
+# update a link (resets view count)
+$ curl -X PUT 'http://localhost:3000/6lbi00hu' -H 'Content-Type: application/json' -d '{"url":"https://universalmusic.com"}'
+{"id":1,"slug":"6lbi00hu","url":"https://universalmusic.com","view_count":0}
+
+# unfurl a link (increments view count)
+$ curl 'http://localhost:3000/6lbi00hu'
+Found. Redirecting to https://universalmusic.com
+```
+
 ## Caveats
 
 1. This was my first time using Prisma so apologies for any missing idioms, but I really enjoyed it versus previous ORMs

@@ -17,7 +17,7 @@ express()
   .post("/shrink", shrink)
   .get("/stats", stats)
   .get("/:slug", unfurl)
-  .post("/:slug", update)
+  .put("/:slug", update)
   .use((_req: Request, res: Response, _next: any) =>
     res.status(404).json({ error: "That endpoint could not be found. Please try again." }),
   )
