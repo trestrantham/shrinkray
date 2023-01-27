@@ -2,14 +2,17 @@ import request from "supertest";
 
 import { app } from "../src/app";
 import { db } from "../src/db";
-import { generateUniqueSlug } from "../src/utils";
 
 describe("GET /shrink", () => {
-  beforeAll(async () => {
-    const urls = ["https://sona.stream", "https://sonymusic.com", "https://universalmusic.com", "https://wmg.stream"];
+  beforeEach(async () => {
+    const links = [
+      { url: "https://sona.stream", slug: "sona" },
+      { url: "https://sonymusic.com", slug: "sony" },
+      { url: "https://universalmusic.com", slug: "universal" },
+      { url: "https://wmg.stream", slug: "wmg" },
+    ];
 
-    for (const url of urls) {
-      const slug = await generateUniqueSlug();
+    for (const { url, slug } of links) {
       await db.link.create({ data: { url, slug } });
     }
   });

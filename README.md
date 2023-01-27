@@ -58,13 +58,12 @@ Shrink Ray uses Artillery to perform load testing. To run the load tests:
 
 ## Caveats
 
-1. This was my first time using Prisma so apologies for any missing idioms. I did have trouble properly wrapping all
-   tests in a transaction with Prisma which is currently causing 2 test failures (even though these features work as
-   expected).
+1. This was my first time using Prisma so apologies for any missing idioms.
 2. Error reporting is generic and could be updated to give specific errors for data validation, DB insert, etc.
 3. There is no authentication/authorization so anyone can create links or edit them.
 4. This intentionally does not have a separate production configuration for the application or database for simplicity's
    sake.
 5. Model/schema logic is currently included in the route handlers. However, if the feature set got any bigger, I
    would refactor model logic into their own modules.
-6. Tests do _not_ mock the DB so that real-world performance can be measured via the test suite.
+6. Tests are wrapped in transactions for data isolation. However, the load test `yarn test:load` runs against the actual
+   database for accurate performance metrics.
